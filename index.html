@@ -654,5 +654,83 @@ function startNewRegistration() {
   location.reload(); // Refresh the page
 }
     </script>
+<!-- Welcome Modal -->
+<div id="welcomeModal" class="modal-overlay">
+  <div class="modal-content">
+    <img src="your-logo.png" alt="Logo" class="modal-logo" />
+    <h2>Welcome to Our Membership Registration</h2>
+    <p>Please follow the steps to complete your registration.</p>
+    <button onclick="closeModal()" class="start-btn">Start Registration</button>
+    <p class="modal-footer">&copy; 2025 Your Organization Name. All rights reserved.</p>
+  </div>
+</div>
+    <style>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s ease;
+}
+
+.modal-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.start-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #80ed99;
+  border: none;
+  border-radius: 6px;
+  color: #003300;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: #57cc99;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+    <script>
+  window.onload = function () {
+    document.getElementById("welcomeModal").style.display = "flex";
+  };
+
+  function closeModal() {
+    document.getElementById("welcomeModal").style.display = "none";
+  }
+</script>
+    
 </body>
 </html>
