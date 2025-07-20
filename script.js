@@ -1,4 +1,72 @@
 <script>
+        "Ibafo": ["Ibafo Hall", "Ibafo Primary"]
+      }
+    },
+    "Odeda": {
+      wards: {
+        "Odeda": ["Odeda Hall", "Odeda School"],
+        "Alabata": ["Alabata Hall", "Alabata School"],
+        "Obantoko": ["Obantoko Hall", "Obantoko Primary"],
+        "Kila": ["Kila Hall", "Kila School"],
+        "Opeji": ["Opeji Hall", "Opeji Primary"]
+      }
+    },
+    "Odogbolu": {
+      wards: {
+        "Odogbolu": ["Odogbolu Hall", "Odogbolu Primary"],
+        "Ijesa Ijebu": ["Ijesa Town Hall", "Ijesa School"],
+        "Okun Owa": ["Okun Hall", "Okun School"],
+        "Leguru": ["Leguru Hall", "Leguru Primary"],
+        "Imagbon": ["Imagbon Hall", "Imagbon School"]
+      }
+    },
+    "Remo North": {
+      wards: {
+        "Isara": ["Isara Town Hall", "Isara School"],
+        "Ilara": ["Ilara Hall", "Ilara School"],
+        "Ipara": ["Ipara Central", "Ipara School"],
+        "Akaka": ["Akaka Hall", "Akaka School"],
+        "Orile-Oko": ["Orile Hall", "Orile School"]
+      }
+    },
+    "Shagamu": {
+      wards: {
+        "Makun": ["Makun High School", "St. John's Church"],
+        "Sabo": ["Sabo Central Mosque", "Sabo Primary School"],
+        "Isote": ["Isote Hall", "Isote School"],
+        "Igbepa": ["Igbepa Hall", "Igbepa Primary"],
+        "Ijoku": ["Ijoku Market", "Ijoku School"]
+      }
+    },
+    "Yewa North": {
+      wards: {
+        "Ayetoro I": ["Ayetoro Town Hall", "St. Paul’s School"],
+        "Ayetoro II": ["Community School", "Anglican Primary School"],
+        "Igbogila": ["Igbogila Central", "St. James Primary"],
+        "Joga-Orile": ["Joga Community Hall", "Moslem Primary School"],
+        "Sawonjo": ["Sawonjo Central", "Christ School"]
+      }
+    },
+    "Yewa South": {
+      wards: {
+        "Ilaro I": ["Ilaro Town Hall", "Sacred Heart Primary"],
+        "Ilaro II": ["St. John's School", "Market Square"],
+        "Owode": ["Owode Youth Centre", "Owode Primary School"],
+        "Ilobi": ["Ilobi Community School", "C&S Primary"],
+        "Erinja": ["Erinja Central", "Community Hall"]
+      }
+    }
+  }
+};
+
+
+  </script>
+
+
+
+
+
+<script>
   function togglePartyFields() {
     const partySelect = document.getElementById("partyMember");
     const partyFields = document.getElementById("partyFields");
