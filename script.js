@@ -96,5 +96,72 @@
       }
     }
   </script>
+<script>
+  function calculateAge() {
+    const dobInput = document.getElementById('dob');
+    const ageInput = document.getElementById('age');
+    const dob = new Date(dobInput.value);
+    const today = new Date();
 
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+
+    ageInput.value = age;
+
+    // Alert if underage
+    if (age < 18) {
+      alert("You must be at least 18 years old to proceed.");
+      ageInput.style.border = "2px solid red";
+    } else {
+      ageInput.style.border = "";
+    }
+  }
+
+  function handleSubmit() {
+    const age = parseInt(document.getElementById('age').value, 10);
+
+    if (isNaN(age) || age < 18) {
+      alert("You must be at least 18 years old to submit.");
+      return;
+    }
+
+    alert("Form submitted successfully!");
+    // Add your data handling logic here
+  }
+</script>
+<script>
+  function toggleInecFields() {
+    const inecSelect = document.getElementById("inec");
+    const vinInput = document.getElementById("vin");
+    const vinField = document.getElementById("vinField");
+
+    if (inecSelect.value === "yes") {
+      vinField.style.display = "block";
+      vinInput.required = true;
+    } else {
+      vinField.style.display = "none";
+      vinInput.value = "";
+      vinInput.required = false;
+    }
+  }
+
+  function togglePartyFields() {
+    const partySelect = document.getElementById("partyMember");
+    const partyIdInput = document.getElementById("partyId");
+    const partyFields = document.getElementById("partyFields");
+
+    if (partySelect.value === "yes") {
+      partyFields.style.display = "block";
+      partyIdInput.required = true;
+    } else {
+      partyFields.style.display = "none";
+      partyIdInput.value = "";
+      partyIdInput.required = false;
+    }
+  }
+</script>
 
