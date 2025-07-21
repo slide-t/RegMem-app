@@ -192,29 +192,6 @@
     <input type="text" id="positionHeld" name="positionHeld" placeholder="E.g., Ward Secretary" />
   </div>
 </div>
-
-  
-<script>
-  
-  function togglePartyFields() {
-    const partySelect = document.getElementById("partyMember");
-    const partyFields = document.getElementById("partyFields");
-    const partyIdInput = document.getElementById("partyId");
-
-    if (partySelect.value === "yes") {
-      partyFields.style.display = "block";
-      partyIdInput.setAttribute("required", "required");
-    } else {
-      partyFields.style.display = "none";
-      partyIdInput.removeAttribute("required");
-      partyIdInput.value = "";
-      document.getElementById("positionHeld").value = "";
-    }
-  }
-
-</script>
-  
-  
   <div class="form-group">
   <label for="dob">Date of Birth</label>
   <input type="date" id="dob" onchange="calculateAge()" />
@@ -263,31 +240,23 @@
   <label for="photoUpload">Select Image</label><br>
   <input type="file" id="photoUpload" accept="image/*" required><br><br>
   <img id="previewImage" src="" alt="Image Preview" style="max-width: 150px; display: none; border: 1px solid #ccc; padding: 5px; border-radius: 6px;" />
-</div>
-
-<script>
-  
-  document.getElementById("photoUpload").addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    const preview = document.getElementById("previewImage");
-    if (file) {
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = "block";
-    } else {
-      preview.src = "";
-      preview.style.display = "none";
-    }
-  });
-  
-</script>
-  
-  
+</div> 
   <div class="form-buttons">
     <button onclick="handleSubmit()">Submit</button>
     <button onclick="window.print()">Print This Record</button>
     <!-- <button onclick="window.print()">Print PDF</button>-->
   </div>
 </div>
+
+    <!-- ✅ Modal Structure -->
+<div id="successModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h2>Registration Successful!</h2>
+    <p>Your information has been submitted successfully.</p>
+    <button onclick="startNewRegistration()">Start New Registration</button>
+  </div>
+</div>
+
     
   <script>
     
@@ -579,7 +548,41 @@
       }
     }
   </script>
-    
+    <script>
+  
+  function togglePartyFields() {
+    const partySelect = document.getElementById("partyMember");
+    const partyFields = document.getElementById("partyFields");
+    const partyIdInput = document.getElementById("partyId");
+
+    if (partySelect.value === "yes") {
+      partyFields.style.display = "block";
+      partyIdInput.setAttribute("required", "required");
+    } else {
+      partyFields.style.display = "none";
+      partyIdInput.removeAttribute("required");
+      partyIdInput.value = "";
+      document.getElementById("positionHeld").value = "";
+    }
+  }
+
+</script>
+  <script>
+  
+  document.getElementById("photoUpload").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById("previewImage");
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+    } else {
+      preview.src = "";
+      preview.style.display = "none";
+    }
+  });
+  
+</script>
+      
     <script>
   function calculateAge() {
     const dobInput = document.getElementById('dob');
@@ -649,14 +652,6 @@
   }
 </script>
     
-    <!-- ✅ Modal Structure -->
-<div id="successModal" class="modal-overlay" style="display:none;">
-  <div class="modal-box">
-    <h2>Registration Successful!</h2>
-    <p>Your information has been submitted successfully.</p>
-    <button onclick="startNewRegistration()">Start New Registration</button>
-  </div>
-</div>
     <script>
     
       function showSuccessModal() {
