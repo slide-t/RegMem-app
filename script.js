@@ -180,17 +180,7 @@ const stateSelect = document.getElementById('state');
     }
   }
 
-  function handleSubmit() {
-    const age = parseInt(document.getElementById('age').value, 10);
-
-    if (isNaN(age) || age < 18) {
-      alert("You must be at least 18 years old to submit.");
-      return;
-    }
-
-    alert("Form submitted successfully!");
-    // Add your data handling logic here
-  }
+ 
 </script>
 <script>
   function toggleInecFields() {
@@ -312,19 +302,35 @@ const stateSelect = document.getElementById('state');
       select.disabled = true;
     }
 
-    function handleSubmit() {
-      const phone = document.getElementById("phone");
-      const phonePattern = /^\+234[0-9]{10}$/;
 
-      if (!biodataDiv.classList.contains("hidden")) {
-        if ((contactMethod.value === "whatsapp" || contactMethod.value === "mobile") && !phonePattern.test(phone.value)) {
-          alert("Enter a valid Nigerian phone number starting with +234 and 10 digits");
-          return;
-        }
-        alert("Form submitted successfully!");
-      }
-    }
   </script>
+
+<script>
+  function handleSubmit() {
+    const phone = document.getElementById("phone");
+    const contactMethod = document.getElementById("contact-method");
+    const biodataDiv = document.getElementById("biodata");
+    const phonePattern = /^\+234[0-9]{10}$/;
+
+    // Validation only if biodata section is visible
+    if (!biodataDiv.classList.contains("hidden")) {
+      if (
+        (contactMethod.value === "whatsapp" || contactMethod.value === "mobile") &&
+        !phonePattern.test(phone.value)
+      ) {
+        alert("Enter a valid Nigerian phone number starting with +234 and 10 digits");
+        return false; // Prevent form submission and reload
+      }
+
+      alert("Form submitted successfully!");
+    }
+
+    return true; // Allow form submission (page will reload)
+  }
+</script>
+
+
+          
 <script>
   function calculateAge() {
     const dobInput = document.getElementById('dob');
