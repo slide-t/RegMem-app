@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ogun State Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 400px;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    .btn {
+      background-color: #006699;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #004466;
+    }
+  </style>
+</head>
+<body>
 
+<header>
+  <h1>Ogun State Admin Dashboard</h1>
+  <p>Manage Records by LGA, Ward & Polling Unit</p>
+</header>
+
+<div class="container">
+  <label for="lga">Select LGA:</label>
+  <select id="lga" onchange="loadWards()">
+    <option value="">-- Select LGA --</option>
+    <option value="Abeokuta North">Abeokuta North</option>
+    <option value="Ijebu Ode">Ijebu Ode</option>
+    <option value="Sagamu">Sagamu</option>
+    <option value="Ado-Odo/Ota">Ado-Odo/Ota</option>
+    <option value="Yewa South">Yewa South</option>
+  </select>
+
+  <label for="ward">Select Ward:</label>
+  <select id="ward" onchange="loadPollingUnits()">
+    <option value="">-- Select Ward --</option>
+  </select>
+
+  <label for="pu">Select Polling Unit:</label>
+  <select id="pu">
+    <option value="">-- Select Polling Unit --</option>
+  </select>
+
+  <a href="admin.html"> <button class="btn" onclick="loadTable()">Preview Records</button></a>
+  <button class="btn" onclick="printRecords()">Print This Record</button>
+</div>
+
+<div class="container">
+  <table id="recordsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>LGA</th>
+        <th>Ward</th>
+        <th>Polling Unit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic content -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const wards = {
+    "Abeokuta North": ["Ago-Oko", "Idi-Aba", "Lafenwa", "Oke-Ilewo", "Ita-Iyalode"],
+    "Ijebu Ode": ["Itoro", "Porogun", "Ijasi", "Oke-Aje", "Isasa"],
+    "Sagamu": ["Sabo", "Ijoku", "Makun", "Ode-lemo", "Ewu-Oliwo"],
+    "Ado-Odo/Ota": ["Iyana-Iyesi", "Sango", "Atan", "Igbesa", "Ota Central"],
+    "Yewa South": ["Ilaro I", "Ilaro II", "Oke-Odan", "Owode", "Idogo"]
+  };
+
+  const sampleRecords = [
+    { name: "Adeola Smith", phone: "+2348031234567", lga: "Ijebu Ode", ward: "Itoro", pu: "PU 01" },
+    { name: "Sade Ogunleye", phone: "+2348023456789", lga: "Sagamu", ward: "Makun", pu: "PU 03" },
+    { name: "Bayo Adeyemi", phone: "+2348061239876", lga: "Abeokuta North", ward: "Lafenwa", pu: "PU 07" },
+  ];
+
+  function loadWards() {
+    const lga = document.getElementById("lga").value;
+    const wardSelect = document.getElementById("ward");
+    wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+
+    if (wards[lga]) {
+      wards[lga].forEach(ward => {
+        const option = document.createElement("option");
+        option.value = ward;
+        option.textContent = ward;
+        wardSelect.appendChild(option);
+      });
+    }
+  }
+
+  function loadPollingUnits() {
+    const puSelect = document.getElementById("pu");
+    puSelect.innerHTML = '<option value="">-- Select Polling Unit --</option>';
+    for (let i = 1; i <= 10; i++) {
+      const option = document.createElement("option");
+      option.value = `PU ${i}`;
+      option.textContent = `PU ${i}`;
+      puSelect.appendChild(option);
+    }
+  }
+
+  function loadTable() {
+    const lga = document.getElementById("lga").value;
+    const ward = document.getElementById("ward").value;
+    const pu = document.getElementById("pu").value;
+
+    const tableBody = document.querySelector("#recordsTable tbody");
+    tableBody.innerHTML = "";
+
+    const filtered = sampleRecords.filter(
+      record =>
+        (!lga || record.lga === lga) &&
+        (!ward || record.ward === ward) &&
+        (!pu || record.pu === pu)
+    );
+
+    filtered.forEach(rec => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${rec.name}</td><td>${rec.phone}</td><td>${rec.lga}</td><td>${rec.ward}</td><td>${rec.pu}</td>`;
+      tableBody.appendChild(row);
+    });
+  }
+
+  function printRecords() {
+    window.print();
+  }
+</script>
+
+</body>
+</html>
